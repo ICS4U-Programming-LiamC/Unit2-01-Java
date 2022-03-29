@@ -5,12 +5,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.net.URI;
 
 /**
 * This code reverses a bunch of string from.
 *
 * @author  Liam Csiffary
-* @version 1.1
+* @version 1.2
 * @since   2022-03-29
 */
 
@@ -90,9 +91,11 @@ public class stringReverser {
   // main function, calls the other functions and prints the normal and reversed strings
   public static void main(String[] args) throws Exception {
 
+    // gets users relative path
+    String path = System.getProperty("user.dir");
+
     // creates the file object
-    File file = new File(
-        "C:/Users/s299776/ICS4U/Unit2/Java/Unit2-01-Java/testCases.txt");
+    File file = new File(path + "/testCases.txt");
 
     // gets the array of testCases from the ArrayGenerator
     String[] testCases = ArrayGenerator(file);
