@@ -1,16 +1,18 @@
-/**
-* This code reverses a bunch of string from
-*
-* @author  Liam Csiffary
-* @version 1.0.1
-* @since   2022-03-29
-*/
-
 // import necessary modules
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner; 
+import java.util.Scanner;
 
+/**
+* This code reverses a bunch of string from.
+*
+* @author  Liam Csiffary
+* @version 1.1
+* @since   2022-03-29
+*/
 
 // class
 public class stringReverser {
@@ -42,6 +44,31 @@ public class stringReverser {
     return array;
   }
 
+
+  // also from https://www.w3schools.com/java/java_files_create.asp
+  public static void Writer(String[] arr) {
+    try {
+      // creates file writing object
+      FileWriter myWriter = new FileWriter("reversed.txt");
+
+      // my code
+      // just writes to the file the same way you'd print it to the terminal
+      // except with myWriter.write instead of System.out.print()
+      for (int each = 0; each < arr.length; each++) {
+        myWriter.write(arr[each] + "\n");
+      }
+
+      // closes the file
+      myWriter.close();
+      System.out.println("Successfully wrote to the file.");
+
+    } catch (IOException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    }
+  }
+
+
   // reverses the string
   public static String reverser(String originalString) {
 
@@ -60,6 +87,7 @@ public class stringReverser {
   }
 
 
+  // main function, calls the other functions and prints the normal and reversed strings
   public static void main(String[] args) throws Exception {
 
     // creates the file object
@@ -72,11 +100,17 @@ public class stringReverser {
     // goes to next line for beautifying reasons
     System.out.println("\n");
 
+    // an array to be passed to the txt file creator
+    String[] txtArray = new String[testCases.length];
+
     // prints the normal string and the reversed string for each index
     // of the array, also sends it down an extra line so it's easier to read
     for (int i = 0; i < testCases.length; i++) {
       System.out.println("Original string: " + testCases[i]);
-      System.out.println("Reversed string: " + reverser(testCases[i]) + "\n");
+      String reversedString = ("Reversed string: " + reverser(testCases[i]) + "\n");
+      System.out.println(reversedString);
+      txtArray[i] = reversedString;
     }
+    Writer(txtArray);
   }
 }
